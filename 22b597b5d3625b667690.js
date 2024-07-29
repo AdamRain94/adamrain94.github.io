@@ -1,14 +1,15 @@
-import {Player} from './Player.js';
-import {Pipe} from './Pipe.js';
-import _fon from '../img/fon2.png'
+import {Player} from '../js/Player.js';
+import {Pipe} from '../js/Pipe.js';
+import _fon from '../img/fon2.png';
 import _playerIco from '../img/pngwing.png';
 import _playerKill from '../img/pngwing_kill.png';
 import _pipeIco from '../img/pipe.png';
-import _coin from '../audio/coin.mp3'
-import _hit from '../audio/hit.mp3'
-import _swing from '../audio/swing.mp3'
+import _coin from '../audio/coin.mp3';
+import _hit from '../audio/hit.mp3';
+import _swing from '../audio/swing.mp3';
 
 const canvas = document.getElementById('canvas');
+const button = document.getElementById('start');
 const ctx = canvas.getContext('2d');
 const startX = 110;
 const startY = 330;
@@ -18,7 +19,6 @@ const playerKill = new Image();
 const coin = new Audio(_coin);
 const hit = new Audio(_hit);
 const swing = new Audio(_swing);
-
 
 let playerIco;
 let player;
@@ -30,8 +30,13 @@ let imgX = 0;
 let score = 0;
 let pipes = [];
 
-newGame();
 
+window.addEventListener('load', () => {
+    fon.src = _fon;
+    printFon();
+});
+
+button.addEventListener('click', newGame);
 document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowUp') {
         swing.currentTime = 0.0;
@@ -59,6 +64,7 @@ function game() {
 
 function newGame() {
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    button.style.display = 'none';
     player = new Player(startX, startY, 40);
     playerIco = new Image();
     fon.src = _fon;
@@ -82,6 +88,7 @@ function stopGame() {
     hit.volume = 0.5;
     hit.play();
     clearInterval(timer);
+    button.style.display = 'block';
 }
 
 function printFon() {
