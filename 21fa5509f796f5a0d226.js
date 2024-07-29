@@ -43,7 +43,11 @@ document.addEventListener('keydown', function (e) {
         newGame();
     }
 });
-
+document.addEventListener('touchstart', (event) => {
+    swing.currentTime = 0.0;
+    swing.play();
+    stepPlayer = 0;
+})
 function game() {
     printFon();
     // printSetka();
