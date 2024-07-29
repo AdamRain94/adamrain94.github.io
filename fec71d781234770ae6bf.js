@@ -48,6 +48,7 @@ document.addEventListener('touchstart', (event) => {
     swing.play();
     stepPlayer = 0;
 })
+
 function game() {
     printFon();
     // printSetka();
